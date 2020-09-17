@@ -1,0 +1,18 @@
+version: '3'
+services:
+  sftp:
+    image: sftp-s3
+    container_name: sftp-s3
+    restart: always
+    ports:
+      - "2222:22"
+    privileged: true
+    environment:
+      - AWS_ACCESS_KEY_ID
+      - AWS_SECRET_ACCESS_KEY
+      - AWS_BUCKET_NAME
+    volumes:
+      - etc_ssh:/etc/ssh
+volumes:
+  etc_ssh:
+    driver: local
